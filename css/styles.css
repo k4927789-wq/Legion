@@ -1,0 +1,374 @@
+:root {
+    --bg-dark: #050508;
+    --card-bg: rgba(15, 15, 23, 0.85);
+    --gold-primary: #ffc107;
+    --gold-glow: rgba(255, 193, 7, 0.4);
+    --red-accent: #ff2a42;
+    --red-glow: rgba(255, 42, 66, 0.5);
+    --text-main: #f0f0f5;
+    --text-muted: #a0a0b0;
+    --border-color: rgba(255, 193, 7, 0.25);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Fondo Animado de Aura y Luces Oscuras */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    animation: floatPulse 8s infinite alternate ease-in-out;
+}
+
+body::before {
+    background: var(--red-glow);
+    top: -100px;
+    left: -100px;
+}
+
+body::after {
+    background: var(--gold-glow);
+    bottom: -100px;
+    right: -100px;
+    animation-delay: -4s;
+}
+
+@keyframes floatPulse {
+    0% { transform: scale(0.8) translate(0, 0); opacity: 0.5; }
+    100% { transform: scale(1.2) translate(40px, 40px); opacity: 0.8; }
+}
+
+/* Contenedor Principal */
+.container {
+    max-width: 900px;
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 45px 35px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 42, 66, 0.15);
+    backdrop-filter: blur(15px);
+    position: relative;
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Insignia del Creador */
+.creator-badge {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    background: linear-gradient(135deg, rgba(255, 42, 66, 0.2), rgba(255, 193, 7, 0.2));
+    border: 1px solid var(--gold-primary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    color: var(--gold-primary);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px var(--gold-glow);
+    animation: glowPulse 3s infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 5px var(--gold-glow); }
+    100% { box-shadow: 0 0 15px var(--red-glow); border-color: var(--red-accent); }
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 35px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 30px;
+    position: relative;
+}
+
+.logo-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gold-primary);
+    box-shadow: 0 0 25px var(--gold-glow), inset 0 0 15px rgba(0, 0, 0, 0.8);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+}
+
+.logo-wrapper:hover .logo-img {
+    transform: scale(1.08) rotate(3deg);
+    box-shadow: 0 0 35px var(--red-glow);
+    border-color: var(--red-accent);
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    color: var(--gold-primary);
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px var(--gold-glow);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.welcome-subtitle {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    color: var(--red-accent);
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px var(--red-glow);
+}
+
+.intro-box {
+    text-align: center;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    color: #d8d8e0;
+    background: linear-gradient(90deg, rgba(255, 42, 66, 0.05), rgba(255, 193, 7, 0.05));
+    padding: 20px 25px;
+    border-radius: 12px;
+    border-left: 4px solid var(--red-accent);
+    border-right: 4px solid var(--gold-primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.rules-title {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    font-size: 1.7rem;
+    color: var(--red-accent);
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--red-glow);
+}
+
+/* Lista de Reglas */
+.rules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 45px;
+}
+
+.rule-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 18px 22px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.rule-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.rule-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: left 0.6s ease;
+}
+
+.rule-card:hover::before {
+    left: 100%;
+}
+
+.rule-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--gold-primary);
+    transform: translateX(8px) scale(1.01);
+    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.5), 0 0 15px var(--gold-glow);
+}
+
+.rule-header {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--gold-primary);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rule-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    padding-left: 5px;
+    line-height: 1.5;
+}
+
+/* Manifiesto */
+.manifesto {
+    background: linear-gradient(135deg, rgba(255, 42, 66, 0.12) 0%, rgba(255, 193, 7, 0.08) 100%);
+    border: 1px solid var(--gold-primary);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 40px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5), 0 0 15px var(--gold-glow);
+}
+
+.manifesto-item {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 10px 0;
+    letter-spacing: 1.5px;
+    color: var(--text-main);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Botón WhatsApp */
+.cta-section {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.btn-whatsapp {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(45deg, #25D366, #128C7E);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 18px 38px;
+    border-radius: 50px;
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+.btn-whatsapp::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: rotate(30deg);
+    transition: all 0.6s ease;
+}
+
+.btn-whatsapp:hover::after {
+    left: 100%;
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 35px rgba(37, 211, 102, 0.7);
+    background: linear-gradient(45deg, #20ba5a, #0e6b60);
+}
+
+/* Footer */
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 25px;
+}
+
+.footer p {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--gold-primary);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.credit-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+}
+
+.credit-text span {
+    color: var(--red-accent);
+    font-weight: bold;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividad */
+@media (max-width: 650px) {
+    .container {
+        padding: 30px 18px;
+    }
+    .creator-badge {
+        position: static;
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .rule-header {
+        font-size: 0.95rem;
+    }
+    .rule-desc {
+        font-size: 0.95rem;
+    }
+    .btn-whatsapp {
+        width: 100%;
+        font-size: 1rem;
+        padding: 16px 20px;
+    }
+    .manifesto-item {
+        font-size: 0.9rem;
+    }
+}
